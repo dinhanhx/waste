@@ -216,3 +216,16 @@ experiment e type: gui {
 		}
 	}
 }
+
+experiment batch_experiment type: batch repeat: 1 keep_seed: true until: (time > 1000) {
+	parameter 'Government decisions:' var: chosen_btn_action 
+	    among: [ ACTION_SUPPORT, ACTION_AWARE, ACTION_RECYCLE ];
+		permanent {
+			display Comparison {
+				chart "Number of people who want to sort" type: series {
+					data "Number of people who want to sort" 
+					    value: Inhabitant count (each.want_sort=true) style: spline color: #blue ;
+				}
+			}	
+	}
+}
